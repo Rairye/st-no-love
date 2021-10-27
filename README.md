@@ -17,7 +17,7 @@ Or, download one of the releases on the right.
 <script src = "de-script.js"> </script>
 ```
 ```javascript
-var source = "<script>hey how are you doing?<\/script>";
+var source = "<script>Hey, how are you doing?<\/script>";
 var result = escapeScriptTags(source);
 console.log(result);
 ```
@@ -30,7 +30,7 @@ console.log(result);
 ```javascript
 import escapeScriptTags from "de-script";
 
-var source = "<script>hey how are you doing?<\/script>";
+var source = "<script>Hey, how are you doing?<\/script>";
 var result = escapeScriptTags(source);
 console.log(result);
 ```
