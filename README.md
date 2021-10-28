@@ -15,7 +15,7 @@ Or, download one of the releases on the right.
 ### Code Sample
 
 ```html
-<script src = "de-script.js"> </script>
+<script src = "escape-the-st.js"> </script>
 ```
 ```javascript
 var source = "<script>Hey, how are you doing?<\/script>";
