@@ -88,6 +88,6 @@ function escapeScriptTags(inputText) {
 		return (result + inputText.substring(lastOpen));
 	}
 			
-	return (inputLength == lastReplacement ? result : result+inputText.substring(lastReplacement+1));
+	return (inputLength - 1 == lastReplacement ? result : result+inputText.substring(lastReplacement+1));
 
 }
