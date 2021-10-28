@@ -8,7 +8,7 @@ Note: This tool only escapes script tags. If you would like to replace less than
 
 ### Installation
 
-Download the raw file at https://github.com/Rairye/de-script/blob/main/de-script.js
+Download the raw file at https://github.com/Rairye/de-script/blob/main/escape-the-st.js
 
 Or, download one of the releases on the right.
 
