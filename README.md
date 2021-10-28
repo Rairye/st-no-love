@@ -27,6 +27,10 @@ console.log(result);
 
 ### Installation
 
+Install using npm:
+
+npm i st-no-love
+
 ### Code Sample
 
 ```javascript
