@@ -1,4 +1,4 @@
-# descript
+# escape-the-st
 Tool for escaping script tags using backslashes (no regex). 
 
 Note: This tool only escapes script tags. If you would like to replace less than or greater than signs with HTML entities, please see https://github.com/Rairye/convert-with-ents
@@ -6,7 +6,7 @@ Note: This tool only escapes script tags. If you would like to replace less than
 ## Code Sample
 
 ```javascript
-import escapeScriptTags from "de-script";
+import escapeScriptTags from "escape-the-st";
 
 var source = "<script>Hey, how are you doing?<\/script>";
 var result = escapeScriptTags(source);
