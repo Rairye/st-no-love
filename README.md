@@ -29,7 +29,7 @@ console.log(result);
 ### Code Sample
 
 ```javascript
-import escapeScriptTags from "de-script";
+import escapeScriptTags from "escape-the-st";
 
 var source = "<script>Hey, how are you doing?<\/script>";
 var result = escapeScriptTags(source);
