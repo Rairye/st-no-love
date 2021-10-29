@@ -39,7 +39,7 @@ function escapeScriptTags(inputText) {
 		return inputText;
 	}
 	
-	var result = "";
+	var result = [];
 	var lastOpen = null;
 	var lastReplacement = null;
 	var hasOpen = false;
@@ -49,7 +49,7 @@ function escapeScriptTags(inputText) {
 		var currentChar = inputText.charAt(i);
 		if (currentChar == "<" && hasOpen == false) {
 		   if (lastReplacement == null || (lastReplacement != null && i - lastReplacement > 1)) {
-			result += (inputText.substring((lastReplacement == null ? 0 : lastReplacement + 1), i));
+			result.push((inputText.substring((lastReplacement == null ? 0 : lastReplacement + 1), i)));
 		   }
 
 		   lastOpen = i;
@@ -57,18 +57,18 @@ function escapeScriptTags(inputText) {
 		}
 		
 		else if (currentChar == "<" && hasOpen == true) {
-			result+=(inputText.substring(lastOpen, i));
+			result.push((inputText.substring(lastOpen, i)));
 			lastOpen = i;
 		}
 		
 		else if (currentChar == ">" && hasOpen == true) {
 			var searchString = inputText.substring(lastOpen+1, i).toLowerCase();
 			if (!stripNonAlpha(searchString).startsWith("script")) {
-				result += inputText.substring(lastOpen, i+1);
+				result.push(inputText.substring(lastOpen, i+1));
 			}
 			
 			else {
-				result += "<\\" + inputText.substring(lastOpen + 1, i+1);
+				result.push("<\\" + inputText.substring(lastOpen + 1, i+1));
 			}
 			
 			hasOpen = false;
@@ -85,9 +85,14 @@ function escapeScriptTags(inputText) {
 	}
 		
 	if (hasOpen == true) {
-		return (result + inputText.substring(lastOpen));
+		result.push(inputText.substring(lastOpen));
+	}
+	
+	if (inputLength - lastReplacement > 1){
+	   result.push(inputText.substring(lastReplacement+1));
+		
 	}
 			
-	return (inputLength - 1 == lastReplacement ? result : result+inputText.substring(lastReplacement+1));
+	return result.join("");
 
 }
