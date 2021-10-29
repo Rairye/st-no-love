@@ -1,13 +1,12 @@
 {
-  "name": "convert-with-ents",
-  "version": "1.0.1",
+  "name": "st-no-love",
+  "version": "1.0.2",
   "type": "module",
-  "description": "Light-weight tool for converting characters in a string into common HTML entities (without regex).",
+  "description": "Tool for escaping script tags using backslashes (no regex).",
   "main": "index.js",
   "keywords": [
-    "html",
-    "entity",
-    "converter",
+    "scriptag",
+    "escape",
     "noregex"
   ],
   "scripts": {
@@ -15,9 +14,9 @@
   },
   "author": "Rairye",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/Rairye/convert-with-ents",
+  "homepage": "https://github.com/Rairye/st-no-love",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Rairye/convert-with-ents/tree/main/convert-with-ents"
+    "url": "https://github.com/Rairye/st-no-love/tree/main/st-no-love"
   }
 }

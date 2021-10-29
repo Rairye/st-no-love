@@ -14,36 +14,86 @@ limitations under the License.
 
 */
 
-var charMap = new Map([["&", "&amp;"], ["<", "&lt;"], [">", "&gt;"], ["\"", "&quot;"], ["\'", "&#39;"]]);
+var abcSet = new Set(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "\\"]);
 
-export default function convertWithEnts(inputStr) {
-	if (typeof inputStr != "string") {
-		return inputStr;
-	}
+function stripNonAlpha(string) {
 	
-	var result = [];
-	var lastReplacement = 0;
-	var stringLength = inputStr.length;
+	var i = 0;
 	
-	for (var i = 0; i < stringLength; i++) {
-		var currentChar = inputStr.charAt(i);
-		if (charMap.has(currentChar)) {
-		   var replacement = charMap.get(currentChar);
-		   result.push((i > lastReplacement ? (inputStr.substring(lastReplacement, i) + replacement) : replacement));
-		   lastReplacement = i + 1;
+	while (i < string.length) {
+		if (abcSet.has(string[i])) {
+			break;
+		}	
+		else {
+			i++;
+		
 		}
-
-	}
-	
-	if (lastReplacement == 0) {
-		return inputStr;
-	}
-	
-	if (lastReplacement != stringLength) {
-		result.push(inputStr.substring(lastReplacement));
 		
 	}
 	
-	return result.join("");
+	return string.substring(i);
 	
+}
+
+export default function escapeScriptTags(inputText) {
+	if (typeof inputText != "string") {
+		return inputText;
+	}
+	
+	var result = [];
+	var lastOpen = null;
+	var lastReplacement = null;
+	var hasOpen = false;
+	var inputLength = inputText.length;
+	
+	for (var i = 0; i < inputLength; i++) {
+		var currentChar = inputText.charAt(i);
+		if (currentChar == "<" && hasOpen == false) {
+		   if (lastReplacement == null || (lastReplacement != null && i - lastReplacement > 1)) {
+			result.push((inputText.substring((lastReplacement == null ? 0 : lastReplacement + 1), i)));
+		   }
+
+		   lastOpen = i;
+		   hasOpen = true;
+		}
+		
+		else if (currentChar == "<" && hasOpen == true) {
+			result.push((inputText.substring(lastOpen, i)));
+			lastOpen = i;
+		}
+		
+		else if (currentChar == ">" && hasOpen == true) {
+			var searchString = inputText.substring(lastOpen+1, i).toLowerCase();
+			if (!stripNonAlpha(searchString).startsWith("script")) {
+				result.push(inputText.substring(lastOpen, i+1));
+			}
+			
+			else {
+				result.push("<\\" + inputText.substring(lastOpen + 1, i+1));
+			}
+			
+			hasOpen = false;
+			lastReplacement = i;
+		}
+		
+		else {
+			continue;		
+		}
+	}
+		
+	if (lastOpen == null){
+	   return inputText;
+	}
+		
+	if (hasOpen == true) {
+		result.push(inputText.substring(lastOpen));
+	}
+	
+	if (inputLength - lastReplacement > 1){
+	   result.push(inputText.substring(lastReplacement+1));
+		
+	}
+			
+	return result.join("");
+
 }
