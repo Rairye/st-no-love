@@ -19,3 +19,7 @@ var result = escapeScriptTags(source);
 console.log(result);
 
 ```
+
+## Other Packages
+
+If you would like to filter out or create a whitelist for punctuation characters, please see https://github.com/Rairye/js-mnl-punct-norm
