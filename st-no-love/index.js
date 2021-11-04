@@ -87,6 +87,7 @@ export default function escapeScriptTags(inputText) {
 		
 	if (hasOpen == true) {
 		result.push(inputText.substring(lastOpen));
+		lastReplacement = inputLength;
 	}
 	
 	if (inputLength - lastReplacement > 1){
