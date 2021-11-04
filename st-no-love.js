@@ -86,11 +86,11 @@ function escapeScriptTags(inputText) {
 		
 	if (hasOpen == true) {
 		result.push(inputText.substring(lastOpen));
+		lastReplacement = inputLength;
 	}
 	
 	if (inputLength - lastReplacement > 1){
 	   result.push(inputText.substring(lastReplacement+1));
-		
 	}
 			
 	return result.join("");
